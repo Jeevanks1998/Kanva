@@ -43,6 +43,63 @@ function checkout() {
         updateCart();
     }
 }
+// Open Login Modal
+function openLoginModal() {
+    document.getElementById('loginModal').style.display = 'block';
+}
+
+// Close Login Modal
+function closeLoginModal() {
+    document.getElementById('loginModal').style.display = 'none';
+}
+
+// Open Sign Up Modal
+function openSignUpModal() {
+    document.getElementById('signUpModal').style.display = 'block';
+    closeLoginModal(); // Close login modal if open
+}
+
+// Close Sign Up Modal
+function closeSignUpModal() {
+    document.getElementById('signUpModal').style.display = 'none';
+}
+
+// Handle Login Form Submission
+document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    // Add your login logic here (e.g., API call)
+    console.log('Login with:', email, password);
+    alert('Login successful!');
+    closeLoginModal();
+});
+
+// Handle Sign Up Form Submission
+document.getElementById('signUpForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('signUpName').value;
+    const email = document.getElementById('signUpEmail').value;
+    const password = document.getElementById('signUpPassword').value;
+    const confirmPassword = document.getElementById('signUpConfirmPassword').value;
+
+    if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+    }
+
+    // Add your sign-up logic here (e.g., API call)
+    console.log('Sign Up with:', name, email, password);
+    alert('Sign Up successful!');
+    closeSignUpModal();
+});
+
+// Open Login Modal when clicking the Login button in the header
+document.querySelector('.btn-login').addEventListener('click', function (e) {
+    e.preventDefault();
+    openLoginModal();
+});
 
 // Sample Scheduling Form Submission
 document.getElementById('scheduleForm').addEventListener('submit', function (event) {
@@ -184,3 +241,58 @@ function callSupport() {
 function emailSupport() {
     alert('Opening email support...');
 }
+async function fetchTests() {
+    const response = await fetch('/api/tests');
+    const tests = await response.json();
+    console.log(tests);
+}
+
+// In-App Chat Functionality
+function openChat() {
+    document.getElementById('chatModal').style.display = 'block';
+}
+
+function closeChat() {
+    document.getElementById('chatModal').style.display = 'none';
+}
+
+function sendMessage() {
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+    if (chatInput.value.trim() !== '') {
+        const message = document.createElement('div');
+        message.textContent = `You: ${chatInput.value}`;
+        chatMessages.appendChild(message);
+        chatInput.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+}
+
+// Call Support Functionality
+function callSupport() {
+    window.location.href = 'tel:+919035071444'; // Replace with your support number
+}
+
+// Email Support Functionality
+function emailSupport() {
+    window.location.href = 'mailto:support@kanvadiagnostics.com'; // Replace with your support email
+}
+
+document.getElementById('ultrasoundForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+    const formData = {
+        patient_name: document.getElementById('patientName').value,
+        patient_age: document.getElementById('patientAge').value,
+        ultrasound_type: document.getElementById('ultrasoundType').value,
+        appointment_date: document.getElementById('ultrasoundDate').value,
+        appointment_time: document.getElementById('ultrasoundTime').value,
+        notes: document.getElementById('notes').value
+    };
+    const response = await fetch('/api/ultrasound', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    });
+    const result = await response.json();
+    alert(result.message);
+});
