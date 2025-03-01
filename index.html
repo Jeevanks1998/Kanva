@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -25,6 +26,53 @@
                 <li><a href="#reports">Reports</a></li>
                 <li><a href="#support">Support</a></li>
                 <li><a href="#login" class="btn-login">Login</a></li>
+                <!-- Login Modal -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeLoginModal()">&times;</span>
+        <h3>Login</h3>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" name="loginEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+            </div>
+            <button type="submit" class="btn-primary">Login</button>
+            <p>Don't have an account? <a href="#" onclick="openSignUpModal()">Sign Up</a></p>
+        </form>
+    </div>
+</div>
+
+<!-- Sign Up Modal -->
+<div id="signUpModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeSignUpModal()">&times;</span>
+        <h3>Sign Up</h3>
+        <form id="signUpForm">
+            <div class="form-group">
+                <label for="signUpName">Full Name:</label>
+                <input type="text" id="signUpName" name="signUpName" required>
+            </div>
+            <div class="form-group">
+                <label for="signUpEmail">Email:</label>
+                <input type="email" id="signUpEmail" name="signUpEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="signUpPassword">Password:</label>
+                <input type="password" id="signUpPassword" name="signUpPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="signUpConfirmPassword">Confirm Password:</label>
+                <input type="password" id="signUpConfirmPassword" name="signUpConfirmPassword" required>
+            </div>
+            <button type="submit" class="btn-primary">Sign Up</button>
+            <p>Already have an account? <a href="#" onclick="openLoginModal()">Login</a></p>
+        </form>
+    </div>
+</div>
             </ul>
         </nav>
     </header>
@@ -37,7 +85,7 @@
             <a href="#tests" class="btn-primary">Book a Test Now</a>
         </div>
         <div class="hero-image">
-            <img src="https://via.placeholder.com/500x400" alt="Sample Collection">
+            <img src="C:\Users\jeeva\OneDrive\Desktop\blood-test_3127109.png" alt="Sample Collection">
         </div>
     </section>
 
@@ -261,6 +309,20 @@
             <p>A: Go to the "Tests" section and select the test you want to book.</p>
         </div>
     </section>
+
+     <!-- In-App Chat Modal -->
+     <div id="chatModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeChat()">&times;</span>
+            <h3>In-App Chat</h3>
+            <div id="chatBox">
+                <div id="chatMessages"></div>
+            </div>
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer>
