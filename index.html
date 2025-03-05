@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Kanva Diagnostic Services</title>
+  <link rel="icon" type="image/x-icon" href="C:\Users\jeeva\OneDrive\Desktop\project\Images\logo.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanva Diagnostic Services</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-vial"></i>
+            <h1>Kanva Diagnostic Services</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tests">Tests</a></li>
+                <li><a href="#cart">Cart (<span id="cartCount">0</span>)</a></li>
+                <li><a href="#ultrasound">Ultrasound</a></li>
+                <li><a href="#reports">Reports</a></li>
+                <li><a href="#support">Support</a></li>
+                <nav>
+                    <ul>
+                        <li><a href="admin.html">Admin</a></li> <!-- Link back to the main page -->
+                    </ul>
+                </nav>
+                <li><a href="#login" class="btn-login">Login</a></li>
+                <!-- Login Modal -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeLoginModal()">&times;</span>
+        <h3>Login</h3>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" name="loginEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+            </div>
+            <button type="submit" class="btn-primary">Login</button>
+            <p>Don't have an account? <a href="#" onclick="openSignUpModal()">Sign Up</a></p>
+        </form>
+    </div>
+</div>
+
+<!-- Sign Up Modal -->
+<div id="signUpModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeSignUpModal()">&times;</span>
+        <h3>Sign Up</h3>
+        <form id="signUpForm">
+            <div class="form-group">
+                <label for="signUpName">Full Name:</label>
+                <input type="text" id="signUpName" name="signUpName" required>
+            </div>
+            <div class="form-group">
+                <label for="signUpEmail">Email:</label>
+                <input type="email" id="signUpEmail" name="signUpEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="signUpPassword">Password:</label>
+                <input type="password" id="signUpPassword" name="signUpPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="signUpConfirmPassword">Confirm Password:</label>
+                <input type="password" id="signUpConfirmPassword" name="signUpConfirmPassword" required>
+            </div>
+            <button type="submit" class="btn-primary">Sign Up</button>
+            <p>Already have an account? <a href="#" onclick="openLoginModal()">Login</a></p>
+        </form>
+    </div>
+</div>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Home Sample Collection Made Easy</h2>
+            <p>Book diagnostic tests from the comfort of your home.</p>
+            <a href="#tests" class="btn-primary">Book a Test Now</a>
+        </div>
+        <div class="hero-image">
+            <img src="C:\Users\jeeva\OneDrive\Desktop\project\Images\blood-test_3127109.png" alt="Sample Collection">
+        </div>
+    </section>
+
+    <!-- Test Booking Section -->
+<section id="tests" class="test-booking">
+    <h2>Browse Diagnostic Tests</h2>
+    <div class="search-bar">
+        <input type="text" id="searchTest" placeholder="Search for a test..." oninput="filterTests()">
+        <button onclick="filterTests()"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="test-cards">
+        <!-- Existing test cards -->
+    </div>
+</section>
+    <section id="tests" class="test-booking">
+        <div class="test-cards">
+            <div class="test-card">
+                <div class="test-card-front">
+                    <h3>Blood Test</h3>
+                    <p>Click to Book</p>
+                </div>
+                <div class="test-card-back">
+                    <h3>CBC,LP,HBA1C</h3>
+                    <p>Price: RS 2000</p>
+                    <button onclick="addToCart('Blood Test', 2000)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-card-front">
+                    <h3>Well Woman Health Check Up</h3>
+                    <p>Click to Book</p>
+                </div>
+                <div class="test-card-back">
+                    <h3></h3>
+                    <p>Price: RS 8000</p>
+                    <button onclick="addToCart('Well Woman Health Check Up', 8000)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-card-front">
+                    <h3>Super Executive Health Check Up </h3>
+                    <p>Click to Book</p>
+                </div>
+                <div class="test-card-back">
+                    <h1>FBS
+                        PPBS
+                        HBA1c
+                        CBP
+                    </h1>
+                    <p>Price: RS 8500</p>
+                    <button onclick="addToCart('Super Executive Health Check Up', 8500)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart" class="cart">
+        <h2>Your Cart</h2>
+        <div id="cartItems"></div>
+        <p>Total: RS <span id="cartTotal">0</span></p>
+        <button onclick="checkout()" class="btn-primary">Proceed to Checkout</button>
+    </section>
+<!-- Ultrasound Appointment Booking Section -->
+<section id="ultrasound" class="ultrasound-booking">
+    <h2>Book an Ultrasound Appointment</h2>
+    <form id="ultrasoundForm">
+        <div class="form-group">
+            <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" name="patientName" required>
+        </div>
+        <div class="form-group">
+            <label for="patientAge">Patient Age:</label>
+            <input type="number" id="patientAge" name="patientAge" required>
+        </div>
+        <div class="form-group">
+            <label for="ultrasoundType">Type of Ultrasound:</label>
+            <select id="ultrasoundType" name="ultrasoundType" required>
+                <option value="">Select Type</option>
+                <option value="abdominal">Abdominal Ultrasound</option>
+                <option value="pelvic">Pelvic Ultrasound</option>
+                <option value="obstetric">Obstetric Ultrasound</option>
+                <option value="thyroid">Thyroid Ultrasound</option>
+                <option value="other">Other</option>
+                 <!-- Upload Prescription -->
+        <div class="form-group">
+            <label for="ultrasoundPrescription">Upload Prescription (if any):</label>
+            <input type="file" id="ultrasoundPrescription" name="ultrasoundPrescription" accept=".pdf,.jpg,.png">
+        </div>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ultrasoundDate">Preferred Date:</label>
+            <input type="date" id="ultrasoundDate" name="ultrasoundDate" required>
+        </div>
+        <div class="form-group">
+            <label for="ultrasoundTime">Available Time:</label>
+            <input type="time" id="ultrasoundTime" name="ultrasoundTime" required>
+        </div>
+        <div class="form-group">
+            <label for="notes">Additional Notes:</label>
+            <textarea id="notes" name="notes" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Book Appointment</button>
+    </form>
+</section>
+
+    <!-- Sample Collection Scheduling Section -->
+    <section id="schedule" class="sample-scheduling">
+        <h2>Schedule Sample Collection</h2>
+        <form id="scheduleForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Preferred Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Available Time:</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Schedule Collection</button>
+        </form>
+    </section>
+
+    <!-- Payment Integration Section -->
+<section id="payment" class="payment">
+    <h2>Payment Options</h2>
+    <div class="payment-options">
+        <button onclick="showCardForm()">Credit/Debit Card</button>
+        <button onclick="showUPIForm()">UPI</button>
+        <button onclick="payWithWallet()">Wallet</button>
+    </div>
+    <div id="cardForm" class="payment-form" style="display: none;">
+        <h3>Enter Card Details</h3>
+        <form id="cardDetailsForm">
+            <div class="form-group">
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" name="cardNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="expiryDate">Expiry Date:</label>
+                <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+            </div>
+            <button type="submit" class="btn-primary">Pay Now</button>
+        </form>
+    </div>
+    <div id="upiForm" class="payment-form" style="display: none;">
+        <h3>Enter UPI ID</h3>
+        <form id="upiDetailsForm">
+            <div class="form-group">
+                <label for="upiId">UPI ID:</label>
+                <input type="text" id="upiId" name="upiId" placeholder="e.g., yourname@upi" required>
+            </div>
+            <button type="submit" class="btn-primary">Pay Now</button>
+        </form>
+    </div>
+</section>
+
+    <!-- Sample Collection Tracking Section -->
+    <section id="tracking" class="tracking">
+        <h2>Sample Collection Tracking</h2>
+        <div class="tracking-status">
+            <p id="trackingMessage">Status: Assigned</p>
+            <button onclick="updateStatus()">Update Status</button>
+        </div>
+    </section>
+   
+    <!-- Sample Collection Scheduling Section -->
+<section id="schedule" class="sample-scheduling">
+    <h2>Schedule Sample Collection</h2>
+    <div class="location-check">
+        <label for="location">Enter your location:</label>
+        <input type="text" id="location" placeholder="Enter your location">
+<button onclick="checkLocation()">Check Availability</button>
+<p id="locationMessage"></p>
+
+        <!-- Existing form fields -->
+    </form>
+</section>
+
+    <!-- Report Access Section -->
+    <section id="reports" class="reports">
+        <h2>View and Download Reports</h2>
+        <div class="report-list">
+            <div class="report-item">
+                <h3>Blood Test Report</h3>
+                <p>Date: 2023-10-01</p>
+                <button onclick="downloadReport('Blood Test Report')">Download</button>
+                <button onclick="shareReport('Blood Test Report')">Share</button>
+            </div>
+            <div class="report-item">
+                <h3>Urine Test Report</h3>
+                <p>Date: 2023-10-02</p>
+                <button onclick="downloadReport('Urine Test Report')">Download</button>
+                <button onclick="shareReport('Urine Test Report')">Share</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Support Section -->
+    <section id="support" class="support">
+        <h2>Customer Support</h2>
+        <div class="support-options">
+            <button onclick="openChat()">In-App Chat</button>
+            <button onclick="callSupport()">Call Support</button>
+            <button onclick="emailSupport()">Email Support</button>
+        </div>
+        <div class="faq">
+            <h3>FAQs</h3>
+            <p>Q: How do I book a test?</p>
+            <p>A: Go to the "Tests" section and select the test you want to book.</p>
+        </div>
+    </section>
+
+     <!-- In-App Chat Modal -->
+     <div id="chatModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeChat()">&times;</span>
+            <h3>In-App Chat</h3>
+            <div id="chatBox">
+                <div id="chatMessages"></div>
+            </div>
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Kanva Diagnostic Services. All rights reserved.</p>
+        <p>&copy; Designed by Jeevan K S</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

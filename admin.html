@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Dashboard - Kanva Diagnostic Services</title>
+    <link rel="icon" type="image/x-icon" href="C:\Users\jeeva\OneDrive\Desktop\project\Images\logo.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-vial"></i>
+            <h1>Kanva Diagnostic Services - Admin</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Back to Home</a></li> <!-- Link back to the main page -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Login Section -->
+    <section id="loginSection" class="login">
+        <h2>Admin Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </section>
+
+    <!-- Admin Dashboard (Hidden by default) -->
+    <section id="adminDashboard" class="admin" style="display: none;">
+        <h2>Admin Dashboard</h2>
+        <div class="admin-options">
+            <button onclick="manageUsers()">Manage Users</button>
+            <button onclick="manageTests()">Manage Tests</button>
+            <button onclick="manageLabs()">Manage Labs</button>
+            <button onclick="viewReports()">View Reports</button>
+            <button onclick="viewAnalytics()">View Analytics</button>
+        </div>
+
+        <!-- Manage Users Section -->
+        <div id="manageUsersSection" class="admin-section" style="display: none;">
+            <h3>Manage Users</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="userList">
+                    <!-- User data will be populated here -->
+                </tbody>
+            </table>
+            <button onclick="addUser()">Add User</button>
+        </div>
+
+        <!-- Manage Tests Section -->
+        <div id="manageTestsSection" class="admin-section" style="display: none;">
+            <h3>Manage Tests</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test ID</th>
+                        <th>Test Name</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="testList">
+                    <!-- Test data will be populated here -->
+                </tbody>
+            </table>
+            <button onclick="addTest()">Add Test</button>
+        </div>
+
+        <!-- Manage Labs Section -->
+        <div id="manageLabsSection" class="admin-section" style="display: none;">
+            <h3>Manage Labs</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Lab ID</th>
+                        <th>Lab Name</th>
+                        <th>Location</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="labList">
+                    <!-- Lab data will be populated here -->
+                </tbody>
+            </table>
+            <button onclick="addLab()">Add Lab</button>
+        </div>
+
+        <!-- View Reports Section -->
+        <div id="viewReportsSection" class="admin-section" style="display: none;">
+            <h3>View Reports</h3>
+            <div id="reportList">
+                <!-- Reports will be displayed here -->
+            </div>
+        </div>
+
+        <!-- View Analytics Section -->
+        <div id="viewAnalyticsSection" class="admin-section" style="display: none;">
+            <h3>View Analytics</h3>
+            <div id="analyticsChart">
+                <!-- Analytics chart will be displayed here -->
+            </div>
+        </div>
+    </section>
+    <script src="admin.js"></script>
+</body>
+</html>
